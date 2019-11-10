@@ -6,7 +6,7 @@ import './styles.scss';
 import PrivateRoute from './components/PriveRoute';
 import BubblePage from './components/BubblePage';
 
-function App() {
+function App(props) {
   return (
     <Router>
       <div className='App'>
