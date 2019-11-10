@@ -25,11 +25,11 @@ const ColorList = ({ colors, updateColors }, props) => {
     // think about where will you get the id from...
     // where is is saved right now?
 
-    const colorId = colors.find(color => {
-      return `${color.id}` === props.match.params.id;
-    });
+    // const colorId = colors.find(color => {
+    //   return `${color.id}` === props.match.params.id;
+    // });
     axiosWithAuth()
-      .put(`/api/colors/${colorId}`, colorToEdit)
+      .put(`/api/colors/${colors.id}`, colorToEdit)
       .then(res => {
         updateColors([res.data, colorToEdit]);
         // console.log('id', colors.id);
