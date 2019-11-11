@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
@@ -9,7 +9,6 @@ const initialColor = {
 
 const ColorList = ({ colors, updateColors }, props) => {
   console.log(colors);
-  console.log('Props', props);
 
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
@@ -29,9 +28,9 @@ const ColorList = ({ colors, updateColors }, props) => {
     //   return `${color.id}` === props.match.params.id;
     // });
     axiosWithAuth()
-      .put(`/api/colors/${colors.id}`, colorToEdit)
+      .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
       .then(res => {
-        updateColors([res.data, colorToEdit]);
+        // updateColors([res.data, colorToEdit]);
         // console.log('id', colors.id);
       })
       .catch(err => {
@@ -41,10 +40,12 @@ const ColorList = ({ colors, updateColors }, props) => {
 
   const deleteColor = color => {
     // make a delete request to delete this color
+
     axiosWithAuth()
-      .delete(`api/color/${color.id}`)
+      .delete(`/api/colors/${color.id}`)
+
       .then(res => {
-        props.history.push('/bubbles');
+        console.log('data', res.data);
       })
       .catch(err => {
         console.log('del', err);
